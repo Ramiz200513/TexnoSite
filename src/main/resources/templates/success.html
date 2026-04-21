@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказ принят! | ELECTRO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body { background-color: #f8f9fa; }
+        .receipt-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-top: 8px solid #198754;
+            padding: 40px;
+            margin-top: 50px;
+        }
+        .map-container {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body class="py-5">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-7 text-center receipt-card">
+            <div class="mb-4">
+                <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+            </div>
+            <h2 class="fw-bold text-dark">Рахмет, заказ принят!</h2>
+            <p class="text-muted">Мы уже начали собирать вашу электронику.</p>
+
+            <div class="row bg-light rounded-4 p-3 my-4 mx-1 text-start">
+                <div class="col-6">
+                    <small class="text-muted d-block">Номер заказа:</small>
+                    <strong th:text="'№' + ${orderNumber}"></strong>
+                </div>
+                <div class="col-6 text-end">
+                    <small class="text-muted d-block">Сумма к оплате:</small>
+                    <strong class="text-primary" th:text="${totalPrice} + ' $'"></strong>
+                </div>
+            </div>
+
+            <div class="text-start mt-4">
+                <p class="fw-bold mb-2"><i class="bi bi-geo-alt-fill text-danger"></i> Заберите заказ в Астане:</p>
+                <div class="map-container">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=71.417382%2C51.089063&z=14&pt=71.417382%2C51.089063,pm2rdm"
+                            width="100%" height="300" frameborder="0"></iframe>
+                </div>
+                <p class="small text-muted text-center">пр. Мангилик Ел, 55/8 (EXPO-центр)</p>
+            </div>
+
+            <div class="mt-4 d-grid gap-2">
+                <a href="/products" class="btn btn-primary btn-lg rounded-pill px-5">Вернуться в магазин</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
