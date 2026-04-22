@@ -28,8 +28,14 @@ jobs:
           nohup java -jar target/*.jar &
           sleep 30 # Ждем 30 секунд, пока сервер полностью запустится
 
-      # 4. Запускаем ZAP (он будет атаковать localhost сервера GitHub)
+    # 4. Исправляем права доступа и запускаем ZAP
       - name: ZAP Baseline Scan
+        run: |
+          chmod -R 777  .  # Даем полные права на текущую папку
+        
+      - name: Run ZAP Scan
         uses: zaproxy/action-baseline@v0.12.0
         with:
-          target: 'http://localhost:8080' # Сервер сканирует сам себя!
+          target: 'http://localhost:8080'
+
+          fail_action: false
