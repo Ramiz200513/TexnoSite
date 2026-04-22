@@ -36,6 +36,6 @@ jobs:
       - name: Run ZAP Scan
         uses: zaproxy/action-baseline@v0.12.0
         with:
-          target: 'http://localhost:8080'
+          target: 'http://localhost:8081'
 
           fail_action: false
