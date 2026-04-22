@@ -55,7 +55,6 @@ public class AdminController {
         Sort sortObj = switch (sort) {
             case "price_asc" -> Sort.by("price").ascending();
             case "price_desc" -> Sort.by("price").descending();
-            case "name_asc" -> Sort.by("name").ascending();
             default -> Sort.by("id").descending();
         };
 
