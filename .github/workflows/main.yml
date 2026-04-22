@@ -21,10 +21,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # 3. Собираем и запускаем твой Spring Boot в фоновом режиме
+
       - name: Start Spring Boot app
         run: |
-          ./mvnw clean package -DskipTests
+          mvn clean package -DskipTests
           nohup java -jar target/*.jar &
           sleep 30 # Ждем 30 секунд, пока сервер полностью запустится
 
