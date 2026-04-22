@@ -55,6 +55,7 @@ public class AdminController {
         Sort sortObj = switch (sort) {
             case "price_asc" -> Sort.by("price").ascending();
             case "price_desc" -> Sort.by("price").descending();
+            case "name_asc" -> Sort.by("name").ascending();
             default -> Sort.by("id").descending();
         };
 
@@ -88,8 +89,11 @@ public class AdminController {
             @RequestParam(defaultValue = "id_desc") String sort,
             jakarta.servlet.http.HttpServletResponse response) throws IOException {
 
-        Sort sortObj = sort.equals("price_asc") ? Sort.by("price").ascending() :
-                sort.equals("price_desc") ? Sort.by("price").descending() : Sort.by("id").descending();
+        Sort sortObj = switch (sort) {
+            case "price_asc" -> Sort.by("price").ascending();
+            case "price_desc" -> Sort.by("price").descending();
+            default -> Sort.by("id").descending();
+        };
 
         List<Product> products = productRepository.findFiltered(
                 keyword, category, minPrice, maxPrice, PageRequest.of(0, 1000, sortObj)
